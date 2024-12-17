@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    kotlin("jvm") version "2.1.0"
 }
 
 repositories {
@@ -34,7 +35,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "kotlin.project.App"
+    mainClass.set("blog.BlogAppKt")
 }
 
 tasks.named<Test>("test") {
