@@ -4,10 +4,12 @@ import com.example.db.PostsDb
 import com.example.model.Post
 
 import java.time.Instant
+
 import kotlin.collections.HashMap
 import kotlin.random.Random
 
 class DefaultPostsDb: PostsDb {
+
     private val posts: HashMap<Int, Post> = HashMap<Int, Post> ()
 
     override fun getAll(): Collection<Post> {
@@ -28,17 +30,18 @@ class DefaultPostsDb: PostsDb {
 
     override fun updateById(id: Int, newText: String) {
         posts[id]?.contents = newText
-        posts[id]?.changeTime = Instant.now().toString()
+        posts[id]?.changeDate = Instant.now().toString()
     }
 
-    override fun createPost(postText: String): Post {
+    override fun createPost(postText: String, author: String): Post {
         val curTime = Instant.now().toString()
         val newId = Random.nextInt()
         val createdPost = Post(
             id = newId,
             contents = postText,
-            creationTime = curTime,
-            changeTime = curTime,
+            creationDate = curTime,
+            changeDate = curTime,
+            author = author,
         )
         posts[newId] = createdPost
         return createdPost
